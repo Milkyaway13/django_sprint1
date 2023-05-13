@@ -52,11 +52,11 @@ def index(request):
     return render(request, template_name, context)
 
 
-def post_detail(request, id):
+def post_detail(request, post_id):
     template_name = 'blog/detail.html'
     post = None
     for p in posts:
-        if p['id'] == id:
+        if p['id'] == post_id:
             post = p
             break
 
@@ -65,10 +65,6 @@ def post_detail(request, id):
         return render(request, template_name, context)
     else:
         raise Http404("Post not found")
-
-# template_name = 'blog/detail.html'
-# context = {'post': posts[id]}
-# return render(request, template_name, context)
 
 
 def category_posts(request, category_slug):
