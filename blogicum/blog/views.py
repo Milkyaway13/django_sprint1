@@ -53,18 +53,12 @@ def index(request):
 
 
 def post_detail(request, post_id):
-    template_name = 'blog/detail.html'
-    post = None
-    for p in posts:
-        if p['id'] == post_id:
-            post = p
-            break
-
-    if post is not None:
-        context = {'post': post}
-        return render(request, template_name, context)
-    else:
-        raise Http404("Post not found")
+    for post in posts:
+        if post['id'] == post_id:
+            template_name = 'blog/detail.html'
+            context = {'post': post}
+            return render(request, template_name, context)
+    raise Http404("Post not found")
 
 
 def category_posts(request, category_slug):
